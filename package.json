@@ -1,0 +1,11 @@
+{
+  "name": "cekmece",
+  "version": "1.0.0",
+  "description": "Çekmece — mahalle alet kütüphanesi (bağımlılıksız fullstack site)",
+  "private": true,
+  "scripts": {
+    "start": "node server/server.js",
+    "reset": "node server/server.js --reset"
+  },
+  "engines": { "node": ">=16" }
+}
