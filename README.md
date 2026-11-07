@@ -1,5 +1,7 @@
 # Çekmece — mahalle alet kütüphanesi
 
+![Ana sayfa önizlemesi](onizleme.png)
+
 Komşuların matkap, merdiven, kazan, projektör gibi aletleri birbirine ödünç verdiği,
 Kadıköy'de geçen kurgusal bir alet kütüphanesi. Hiçbir bağımlılığı yok: npm paketi, framework
 ya da build adımı gerekmiyor.
