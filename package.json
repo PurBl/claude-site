@@ -4,6 +4,7 @@
   "description": "Çekmece — mahalle alet kütüphanesi (bağımlılıksız fullstack site)",
   "private": true,
   "scripts": {
+    "build": "node tools/build.js",
     "start": "node server/server.js",
     "reset": "node server/server.js --reset"
   },

@@ -6,22 +6,36 @@ Komşuların matkap, merdiven, kazan, projektör gibi aletleri birbirine ödün�
 Kadıköy'de geçen kurgusal bir alet kütüphanesi. Hiçbir bağımlılığı yok: npm paketi, framework
 ya da build adımı gerekmiyor.
 
-## Açmanın iki yolu
+## Açmak için
 
-**1. Doğrudan dosyadan:** `index.html` dosyasına çift tıklayın. Site eksiksiz çalışır. Arka uç
-mantığı tarayıcı içinde çalışır, veri o tarayıcının `localStorage` alanında tutulur. Alt bilgideki
-“Defteri baştan yaz” düğmesi her şeyi örnek veriye döndürür.
+**`index.html` dosyasına çift tıklayın, o kadar.** Bütün özellikler çalışır: üyelik, giriş, ödünç alma,
+sıra, uzatma, iade, bağış ve görevli paneli. Stiller, betikler, fontlar ve çizimler bu tek dosyanın içine
+gömülü olduğu için dosyayı tek başına başka bir klasöre, USB belleğe ya da e-postaya koyabilirsiniz.
+İnternet bağlantısı gerekmez.
 
-**2. Gerçek sunucuyla (ortak veri):**
+Veriler o tarayıcıda tutulur ve sayfayı kapatsanız da kalır. Alt bilgideki “Defteri baştan yaz” düğmesi
+her şeyi örnek veriye döndürür.
+
+### İsteğe bağlı: ortak sunucu
+
+Birden fazla kişinin aynı rafı görmesi isteniyorsa:
 
 ```bash
-node server/server.js        # ya da: npm start
-# http://localhost:4173
-node server/server.js --reset   # veritabanını örnek veriye döndür
+node server/server.js            # http://localhost:4173
+node server/server.js --reset    # veritabanını örnek veriye döndür
 ```
 
-Veri `server/data/db.json` dosyasına yazılır. Parolalar `scrypt` ile hashlenir, oturumlar
-Bearer token ile yürür. Sayfa sunucunun açık olduğunu kendisi anlar ve ona bağlanır.
+Veri `server/data/db.json` dosyasına yazılır, parolalar `scrypt` ile hashlenir. Sayfa sunucuyu kendisi
+fark eder. Sunucu yoksa tarayıcı içi deftere geçer.
+
+### Kodu düzenlemek
+
+`index.html` dosyası üretilmiş bir dosyadır. Asıl kaynaklar `src/index.html` ve `assets/` altındadır.
+Bunları değiştirdikten sonra tek dosyayı yeniden üretin:
+
+```bash
+node tools/build.js
+```
 
 ## Deneme hesapları
 
@@ -46,7 +60,9 @@ uzatma yalnızca bir kez, sıradaki komşunun önceliği var, iade edilince sır
 ## Yapı
 
 ```
-index.html            uygulama kabuğu + el çizimi SVG alet ikonları
+index.html            ÜRETİLMİŞ tek parça site (çift tıkla aç)
+src/index.html        uygulama kabuğu + el çizimi SVG alet ikonları
+tools/build.js        her şeyi index.html içine gömen betik
 assets/css/style.css  bütün görsel dil
 assets/js/core.js     ortak iş mantığı: hem Node'da hem tarayıcıda çalışır
 assets/js/api.js      sunucu varsa HTTP, yoksa tarayıcı içi defter

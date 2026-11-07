@@ -610,7 +610,7 @@
     if (Api.mode() === 'server') {
       el.innerHTML = 'Sunucuda tutuluyor (<code>server/data/db.json</code>). Herkes aynı rafı görür.';
     } else {
-      el.innerHTML = 'Bu tarayıcıda tutuluyor — sayfa dosyadan açıldı. Ortak defter için <code>node server/server.js</code>.<br><button class="btn ghost small" id="resetLocal">Defteri baştan yaz</button>';
+      el.innerHTML = 'Bu bilgisayarda, bu tarayıcıda tutuluyor. Kartlar, ödünçler ve bağışlar sayfayı kapatsanız da kalır.<br><button class="btn ghost small" id="resetLocal">Defteri baştan yaz</button>';
       document.getElementById('resetLocal').addEventListener('click', function () {
         if (!confirm('Bu tarayıcıdaki tüm ödünçler, kartlar ve bağışlar silinip örnek veriye dönülecek. Emin misiniz?')) return;
         Api.resetLocal(); state.me = null; state.unread = 0;

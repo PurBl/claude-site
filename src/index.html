@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Çekmece — Mahalle Alet Kütüphanesi</title>
+<meta name="description" content="Kadıköy'ün arka sokaklarında, komşuların bağışladığı aletlerle çalışan ücretsiz ödünç rafı.">
+<meta name="theme-color" content="#ece3cc">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='6' width='28' height='20' fill='%23ece3cc' stroke='%231f2638' stroke-width='2.5'/%3E%3Crect x='10' y='10' width='12' height='5' fill='none' stroke='%231f2638' stroke-width='2'/%3E%3Cpath d='M11 21h10' stroke='%23c2391b' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Alet çizimleri: tek çizgi kalınlığı, 64'lük ızgara. <use href="#i-..."> ile kullanılır. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.9 1.35" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="c"/>
+      <feTurbulence type="turbulence" baseFrequency=".04" numOctaves="1" seed="9" result="w"/>
+      <feDisplacementMap in="c" in2="w" scale="1.6"/>
+    </filter>
+    <symbol id="i-drill" viewBox="0 0 64 64"><rect x="7" y="15" width="34" height="14" rx="3"/><path d="M41 18h7v8h-7"/><path d="M48 22h12"/><path d="M52 20v4M56 20v4"/><path d="M17 29l-3 19h12l2-19"/><rect x="11" y="48" width="20" height="7" rx="1.5"/><path d="M27 32c3 .5 3 4 1 6"/><path d="M13 20h12"/></symbol>
+    <symbol id="i-driver" viewBox="0 0 64 64"><path d="M10 18h26a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H10z"/><path d="M40 21h5v6h-5"/><path d="M45 24h8l2 1.5-2 1.5h-8"/><path d="M16 30l-2 16h11l1-16"/><rect x="10" y="46" width="20" height="9" rx="1.5"/><path d="M14 50h12"/><path d="M14 18v12"/></symbol>
+    <symbol id="i-bits" viewBox="0 0 64 64"><rect x="7" y="14" width="50" height="38" rx="2"/><path d="M7 24h50"/><path d="M14 30v14M20 30v14M26 30v14M32 30v14M38 30v14M44 30v14M50 30v14"/><path d="M12 30h4M18 30h4M24 30h4M30 30h4M36 30h4M42 30h4M48 30h4"/><path d="M28 14v-4h8v4"/></symbol>
+    <symbol id="i-saw" viewBox="0 0 64 64"><path d="M6 46L40 24l6 10L10 52z"/><path d="M10 52l1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2 1-3 2 2"/><path d="M40 24l9-9a6 6 0 0 1 8 0l3 11a5 5 0 0 1-3 6l-11 2"/><ellipse cx="52" cy="23" rx="3" ry="4.5" transform="rotate(-30 52 23)"/></symbol>
+    <symbol id="i-sander" viewBox="0 0 64 64"><rect x="7" y="40" width="50" height="9" rx="1.5"/><path d="M7 52h50"/><path d="M14 40V28a9 9 0 0 1 9-9h18a9 9 0 0 1 9 9v12"/><path d="M23 19v-5h14v5"/><path d="M20 30h24"/><path d="M50 32c6 0 9-3 9-9"/></symbol>
+    <symbol id="i-clamp" viewBox="0 0 64 64"><path d="M16 6v52"/><path d="M14 6h26v9h-6"/><path d="M14 44h20v-6"/><path d="M28 15v19"/><rect x="24" y="34" width="8" height="4"/><path d="M28 48v8"/><path d="M22 56h12"/><path d="M28 15h6"/></symbol>
+    <symbol id="i-level" viewBox="0 0 64 64"><rect x="3" y="25" width="58" height="14" rx="2"/><rect x="25" y="28" width="14" height="8" rx="4"/><circle cx="33" cy="32" r="1.6"/><path d="M29 28v8M35 28v8"/><path d="M10 25v14M54 25v14"/></symbol>
+    <symbol id="i-laser" viewBox="0 0 64 64"><rect x="20" y="22" width="24" height="24" rx="4"/><rect x="25" y="27" width="14" height="7" rx="1"/><path d="M32 22V5" stroke-dasharray="3 3"/><path d="M44 30h17M3 30h17" stroke-dasharray="3 3"/><path d="M26 46l-6 14M38 46l6 14M32 46v14"/><circle cx="32" cy="40" r="2"/></symbol>
+    <symbol id="i-detector" viewBox="0 0 64 64"><rect x="20" y="6" width="24" height="50" rx="8"/><rect x="25" y="13" width="14" height="10" rx="1"/><circle cx="28" cy="31" r="2"/><circle cx="36" cy="31" r="2"/><path d="M26 44h12"/><path d="M50 22a12 12 0 0 1 0 18M55 18a18 18 0 0 1 0 26"/><path d="M14 22a12 12 0 0 0 0 18"/></symbol>
+    <symbol id="i-ladder" viewBox="0 0 64 64"><path d="M15 59L27 6M49 59L37 6"/><path d="M26 6h12"/><path d="M25 17h14M23 28h18M20.5 39h23M18 50h28"/><path d="M29 6V4h6v2"/></symbol>
+    <symbol id="i-shears" viewBox="0 0 64 64"><circle cx="15" cy="50" r="7"/><circle cx="49" cy="50" r="7"/><path d="M20 45L44 7"/><path d="M44 45L20 7"/><circle cx="32" cy="26" r="2"/><path d="M44 7c-2 6-5 10-9 13"/></symbol>
+    <symbol id="i-shovel" viewBox="0 0 64 64"><path d="M26 4h12"/><path d="M32 4v32"/><path d="M22 36h20v10a10 11 0 0 1-10 12 10 11 0 0 1-10-12z"/><path d="M28 36v-4h8v4"/></symbol>
+    <symbol id="i-hose" viewBox="0 0 64 64"><circle cx="28" cy="30" r="18"/><circle cx="28" cy="30" r="6"/><path d="M28 12v12M28 36v12M10 30h12M34 30h12"/><path d="M46 30c8 0 10 8 10 16v4"/><path d="M53 50h6l-1 7h-4z"/><path d="M16 46l-4 12M40 46l4 12"/></symbol>
+    <symbol id="i-vacuum" viewBox="0 0 64 64"><rect x="12" y="24" width="30" height="30" rx="4"/><path d="M10 24h34v-5a4 4 0 0 0-4-4H14a4 4 0 0 0-4 4z"/><circle cx="18" cy="57" r="3"/><circle cx="36" cy="57" r="3"/><path d="M44 20c12 0 14 9 14 18v16"/><path d="M52 56h12"/><path d="M20 34h14"/></symbol>
+    <symbol id="i-steam" viewBox="0 0 64 64"><path d="M10 54V32a16 14 0 0 1 32 0v22z"/><path d="M18 18a8 8 0 0 1 16 0"/><path d="M42 40h10l8-8"/><path d="M50 22c-2-3 2-5 0-8M56 24c-2-3 2-5 0-8"/><path d="M10 46h32"/></symbol>
+    <symbol id="i-washer" viewBox="0 0 64 64"><rect x="8" y="24" width="24" height="26" rx="2"/><circle cx="14" cy="54" r="5"/><path d="M30 24V8h-8"/><path d="M32 40c8 0 10-4 14-8"/><path d="M46 32l-3-3 5-5 3 3z"/><path d="M50 26l9-9"/><path d="M60 12l2-2M61 16l3-1M57 11l1-3"/><path d="M14 32h12"/></symbol>
+    <symbol id="i-pot" viewBox="0 0 64 64"><path d="M10 24h44v24a8 8 0 0 1-8 8H18a8 8 0 0 1-8-8z"/><path d="M8 24c6-9 42-9 48 0"/><path d="M28 13h8"/><path d="M32 13v3"/><path d="M10 32H5v6h5M54 32h5v6h-5"/><path d="M16 46h32"/></symbol>
+    <symbol id="i-urn" viewBox="0 0 64 64"><path d="M22 10h20"/><path d="M24 10l-4 8h24l-4-8"/><path d="M20 18c-6 6-6 26 0 32h24c6-6 6-26 0-32"/><path d="M18 56h28M22 50l-2 6M42 50l2 6"/><path d="M50 36h6v4M53 40v4"/><path d="M14 26c-4 0-6 3-6 6s2 6 6 6"/><path d="M32 4v6"/></symbol>
+    <symbol id="i-table" viewBox="0 0 64 64"><rect x="4" y="18" width="56" height="7" rx="1"/><path d="M12 25l16 32M28 25L12 57M36 25l16 32M52 25L36 57"/><path d="M8 57h8M24 57h8M32 57h8M48 57h8"/></symbol>
+    <symbol id="i-projector" viewBox="0 0 64 64"><rect x="6" y="26" width="40" height="20" rx="3"/><circle cx="36" cy="36" r="6"/><circle cx="36" cy="36" r="2"/><path d="M42 31l20-12M42 41l20 12" stroke-dasharray="3 3"/><path d="M12 46v5M40 46v5"/><path d="M12 32h12M12 38h8"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 64 64"><rect x="16" y="10" width="32" height="48" rx="4"/><circle cx="32" cy="40" r="10"/><circle cx="32" cy="40" r="3"/><circle cx="32" cy="21" r="4"/><path d="M24 10V5h16v5"/></symbol>
+
+    <symbol id="logo" viewBox="0 0 48 40"><rect x="2" y="2" width="44" height="36"/><rect x="14" y="8" width="20" height="9"/><path d="M14 12.5h20" stroke-width="1"/><path d="M17 28h14"/><circle cx="12" cy="12.5" r="1.3"/><circle cx="36" cy="12.5" r="1.3"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">İçeriğe geç</a>
+
+<header class="site-head">
+  <div class="tape" aria-hidden="true"><div class="tape-nums" id="tapeNums"></div><div class="tape-hook" id="tapeHook"></div></div>
+  <div class="mast">
+    <a class="brand" href="#/" aria-label="Çekmece ana sayfa">
+      <svg class="brand-mark"><use href="#logo"/></svg>
+      <span class="brand-word">Çekmece</span>
+      <span class="brand-sub">mahalle alet kütüphanesi<br>Yeldeğirmeni · Kadıköy</span>
+    </a>
+    <nav class="drawers" id="nav" aria-label="Ana menü"></nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <p class="loading">Çekmece açılıyor…</p>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div>
+      <p class="foot-word">Çekmece</p>
+      <p>Ücretsiz. Gönüllü. Bodrum katta.<br>Arka sokak, eski fırının altı — kapıda sarı bant var.</p>
+    </div>
+    <div>
+      <p class="label">Masa saatleri</p>
+      <p>Salı–Cuma 18.00–21.00<br>Cumartesi 10.00–16.00<br>Pazar, pazartesi: kapalı, aletler dinleniyor.</p>
+    </div>
+    <div>
+      <p class="label">Defter</p>
+      <p id="modeNote">…</p>
+    </div>
+  </div>
+  <p class="foot-fine">Bu sitede çerez yok, reklam yok, “topluluğumuza katılın” açılır penceresi yok. Sadece raf.</p>
+</footer>
+
+<div class="stamp-layer" id="stampLayer" aria-live="polite"></div>
+
+<script src="assets/js/core.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
